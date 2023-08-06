@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import BoardComponent from "./components/BoardComponent";
+import { Board } from "./models/Board";
 
 function App() {
+  const [board, setBoard] = useState(new Board());
+
+  useEffect(() => {
+    // при монтировании компонента вызываем функцию инициализации ячеек
+    restart();
+    // !!! закончил тут. 14:28 на видео
+  }, []);
+
+  function restart() {
+    const newBoard = new Board();
+    newBoard.initCells();
+    setBoard(newBoard);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BoardComponent />
     </div>
   );
 }
