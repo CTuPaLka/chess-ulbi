@@ -4,25 +4,25 @@ import BoardComponent from "./components/BoardComponent";
 import { Board } from "./models/Board";
 
 function App() {
-  const [board, setBoard] = useState(new Board());
+	const [board, setBoard] = useState(new Board());
 
-  useEffect(() => {
-    // при монтировании компонента вызываем функцию инициализации ячеек
-    restart();
-    // !!! закончил тут. 14:28 на видео
-  }, []);
+	useEffect(() => {
+		// при монтировании компонента вызываем функцию инициализации ячеек
+		restart();
+	}, []);
 
-  function restart() {
-    const newBoard = new Board();
-    newBoard.initCells();
-    setBoard(newBoard);
-  }
+	function restart() {
+		const newBoard = new Board();
+		newBoard.initCells();
+		newBoard.addFigures()
+		setBoard(newBoard);
+	}
 
-  return (
-    <div className="App">
-      <BoardComponent />
-    </div>
-  );
+	return (
+		<div className="app">
+			<BoardComponent board={board} setBoard={setBoard} />
+		</div>
+	);
 }
 
 export default App;
